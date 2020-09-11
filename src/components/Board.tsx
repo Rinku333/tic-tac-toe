@@ -1,10 +1,14 @@
 import React from 'react';
+import cross from '../cross.svg';
+import circle from '../circle.svg';
 import './Board.css';
 
 class Square extends React.Component {
     render() {
         return (
-            <div className='item'>a</div>
+            <div className='item'>
+                <img src={circle} className='marker' />
+            </div>
         )
     }
 }
