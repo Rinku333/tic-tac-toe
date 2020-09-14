@@ -13,10 +13,15 @@
 }
 
 .item {
+    border: none;
     background-color: white;
     border-radius: 10px;
     grid-row: auto;
     grid-column: auto;
+}
+
+.item:focus {
+    outline: none;
 }
 
 img.marker {
