@@ -3,7 +3,7 @@ import cross from '../cross.svg';
 import circle from '../circle.svg';
 import './Board.css';
 
-enum Marker {
+export enum Marker {
     empty,
     X,
     O
@@ -11,8 +11,8 @@ enum Marker {
 
 function Square(props: {marker: Marker, onClick: () => void}) {
     let content: React.ReactElement<any,any> | null = null;
-    if(props.marker === Marker.O) content = <img src={circle} className='marker' />;
-    else if(props.marker === Marker.X) content = <img src={cross} className='marker' />;
+    if(props.marker === Marker.O) content = <img src={circle} className='marker' alt='circle'/>;
+    else if(props.marker === Marker.X) content = <img src={cross} className='marker' alt='cross'/>;
 
     return (
         <button
@@ -24,30 +24,14 @@ function Square(props: {marker: Marker, onClick: () => void}) {
     )
 }
 
-export class Board extends React.Component<{},{markers: Marker[], turn: Marker}> {
-    constructor(props: Readonly<{}>){
-        super(props);
-        this.state = {markers: new Array(9).fill(Marker.empty), turn: Marker.X};
-    }
-
+export class Board extends React.Component<{markers: Marker[], handleClick:(i:number)=>void}> {
     renderSquare(i: number){
         return (
             <Square 
-                marker={this.state.markers[i]}
-                onClick={() => this.handleClick(i)}
+                marker={this.props.markers[i]}
+                onClick={() => this.props.handleClick(i)}
             />
         );
-    }
-
-    handleClick(i:number): void{
-        if(this.state.markers[i] === Marker.empty){
-            let m = this.state.markers.slice();
-            m[i] = this.state.turn;
-    
-            let t = this.state.turn === Marker.X ? Marker.O : Marker.X;
-    
-            this.setState({markers:m, turn:t});
-        }
     }
 
     render(){
@@ -66,4 +50,3 @@ export class Board extends React.Component<{},{markers: Marker[], turn: Marker}>
         )
     }
 }
-
