@@ -13,6 +13,7 @@ function Square(props: {marker: Marker, onClick: () => void}) {
     let content: React.ReactElement<any,any> | null = null;
     if(props.marker === Marker.O) content = <img src={circle} className='marker' alt='circle'/>;
     else if(props.marker === Marker.X) content = <img src={cross} className='marker' alt='cross'/>;
+    else content = <div className='marker spacer'/>
 
     return (
         <button
